@@ -1,16 +1,10 @@
 package com.example.draw
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
-import com.example.draw.databinding.ActivityMainBinding
 import com.example.draw.databinding.FragmentMyBinding
 import kotlin.math.tan
 
@@ -35,7 +29,7 @@ class MyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        setContentView(first(this, xPos1, yPos1, xPos2, yPos2))
-        val myDraw=first(requireContext(),null)
+        val myDraw=DrawLine(requireContext(),null)
 
         binding.b.setOnClickListener {
             val d = binding.d.text.toString().toFloat()

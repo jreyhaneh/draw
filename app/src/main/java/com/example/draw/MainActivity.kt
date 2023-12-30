@@ -1,55 +1,56 @@
 package com.example.draw
 
-import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import com.example.draw.databinding.ActivityMainBinding
-import java.lang.Math.toRadians
+import java.lang.Math.sin
 import kotlin.math.cos
-import kotlin.math.tan
 
 class MainActivity : AppCompatActivity() {
 
-    private var xPos1 =20f
-    private var yPos1 =1000f
+    private var xPos1 = 70f
+    private var yPos1 = 1000f
     private var xPos2 = 0.0f
     private var yPos2 = 0.0f
+    private var lastDegree = -90F
+    private var degreeList = mutableListOf<Float>()
+    private var lengthList = mutableListOf<String>()
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val myDraw=first(this,null)
-//        setContentView(my)
+        val myDraw = DrawLine(binding.butDraw.context, null)
         binding.root.addView(myDraw)
 
-        binding.b.setOnClickListener {
-            val d = binding.d.text.toString().toFloat()
-            val s = binding.s.text.toString().toFloat()
-            val m = tan(d)
-            xPos2 = xPos1 + s
-            yPos2 = (m * xPos2) - (m * xPos1) + yPos1
+        binding.butDelete.setOnClickListener {
+            degreeList.last()
+            degreeList.removeLast()
+            lastDegree = degreeList.last()
+            lengthList.last()
+            lengthList.removeLast()
+            val deleteLine = myDraw.deleteLine()
+            xPos1 = deleteLine.first
+            yPos1 = deleteLine.second
+        }
 
-//            xPos2=xPos1+(s* cos(toRadians(d))).toFloat()
-//            yPos2=yPos1+(s*cos(toRadians(d))).toFloat()
+        binding.butDraw.setOnClickListener {
 
-            myDraw.addLine(xPos1, yPos1, xPos2, yPos2)
-            Log.e("1","$xPos1")
-            Log.e("2","$yPos1")
-            Log.e("3","$xPos2")
-            Log.e("4","$yPos2")
+            val degree = binding.degree.text.toString().toFloat()
+            val lengthInCm = binding.size.text.toString().toFloat()
+            lengthList.add(lengthInCm.toInt().toString())
+            val radians = Math.toRadians(lastDegree + degree.toDouble())
+            lastDegree += degree.toFloat()
+            degreeList.add(lastDegree)
+            xPos2 = xPos1 + lengthInCm * cos(radians).toFloat()
+            yPos2 = yPos1 + lengthInCm * kotlin.math.sin(radians).toFloat()
+            myDraw.addLine(xPos1, yPos1, xPos2, yPos2,degreeList,lengthList)
+
             xPos1 = xPos2
             yPos1 = yPos2
+            binding.degree.setText("0")
+
         }
 
     }

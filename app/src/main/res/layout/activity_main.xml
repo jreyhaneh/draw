@@ -7,36 +7,56 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sub"
+    <com.example.draw.DrawLine
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/d" />
+        app:layout_constraintTop_toBottomOf="@+id/but_delete" />
+
+
+    <Button
+        android:id="@+id/but_draw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"
+        app:layout_constraintEnd_toStartOf="@+id/but_delete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/degree" />
+
+    <Button
+        android:id="@+id/but_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/but_draw"
+        app:layout_constraintTop_toBottomOf="@+id/degree" />
 
     <EditText
-        android:id="@+id/d"
+        android:id="@+id/degree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:width="1dp"
         android:hint="درجه"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/s"
+        app:layout_constraintStart_toEndOf="@+id/size"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/s"
+        android:id="@+id/size"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:width="1dp"
         android:hint="طول"
         android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/d"
+        app:layout_constraintEnd_toStartOf="@+id/degree"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
