@@ -65,8 +65,10 @@ class DrawLine(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 //            val rotatedTextWidth = paint.measureText(finalText)
             val xPos = ((start.first + end.first) / 2)
             val yPos = ((start.second + end.second) / 2)
-
-            matrix.setRotate(finalDegree?.get(counter) ?: 0F, xPos, yPos)
+            if (end.first < start.first)
+                matrix.setRotate(180+(finalDegree?.get(counter) ?: 0F), xPos, yPos)
+            else
+                matrix.setRotate(finalDegree?.get(counter) ?: 0F, xPos, yPos)
 
             canvas.save()
             canvas.concat(matrix)
