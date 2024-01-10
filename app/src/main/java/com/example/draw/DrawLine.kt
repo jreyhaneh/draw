@@ -6,21 +6,28 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Point
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 
 class DrawLine(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private val paint = Paint()
     private val matrix = Matrix()
+    private var point = Paint()
+    private var canvas = Canvas()
     private var finalDegree: List<Float>? = null
     private var finalText: List<String>? = null
     private val lines = mutableListOf<Pair<Float, Float>>()
 
     init {
         paint.isAntiAlias = true
-        paint.color = Color.BLUE
+        paint.color = Color.WHITE
         paint.strokeWidth = 20F
+
+        point.color=Color.RED
+        point.style=Paint.Style.FILL
     }
 
     fun deleteLine(): Pair<Float, Float> {
@@ -61,8 +68,9 @@ class DrawLine(context: Context, attrs: AttributeSet?) : View(context, attrs) {
             val end = lines[i + 1]
 
             canvas.drawLine(start.first, start.second, end.first, end.second, paint)
-            canvas.drawPoint(start.first, start.second, paint)
-//            val rotatedTextWidth = paint.measureText(finalText)
+            canvas.drawCircle(start.first,start.second,20F,point)
+            canvas.drawCircle(end.first,end.second,20F,point)
+
             val xPos = ((start.first + end.first) / 2)
             val yPos = ((start.second + end.second) / 2)
             if (end.first < start.first)
@@ -85,5 +93,32 @@ class DrawLine(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         }
 
     }
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        val x = event.x
+//        val y = event.y
+//
+//        when (event.action) {
+//            MotionEvent.ACTION_DOWN -> {
+//                // شروع رسم خط جدید
+//                path.reset()
+//                path.moveTo(x, y)
+//                return true
+//            }
+//            MotionEvent.ACTION_MOVE -> {
+//                // ادامه رسم خط
+//                path.lineTo(x, y)
+//                invalidate()
+//                return true
+//            }
+//            MotionEvent.ACTION_UP -> {
+//                // پایان رسم خط
+//                path.lineTo(x, y)
+//                invalidate()
+//                return true
+//            }
+//        }
+//        return super.onTouchEvent(event)
+//    }
+
 
 }

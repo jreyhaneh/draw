@@ -6,24 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <com.example.draw.DrawLine
-        android:id="@+id/drawLine"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/but_delete" />
-
-
     <Button
         android:id="@+id/but_draw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add"
-        app:layout_constraintEnd_toStartOf="@+id/but_delete"
+        app:layout_constraintEnd_toStartOf="@+id/degree"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/degree" />
@@ -33,73 +21,120 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="delete"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/degree"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/but_draw"
+        app:layout_constraintStart_toStartOf="@+id/degree"
         app:layout_constraintTop_toBottomOf="@+id/degree" />
+
+    <Button
+        android:id="@+id/but_south"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="south"
+        app:layout_constraintEnd_toEndOf="@+id/south"
+        app:layout_constraintStart_toEndOf="@+id/degree"
+        app:layout_constraintTop_toBottomOf="@+id/south" />
 
     <EditText
         android:id="@+id/degree"
-        android:layout_width="0dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:width="1dp"
         android:hint="درجه"
         android:inputType="numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/size"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/size"
-        android:layout_width="0dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:width="1dp"
         android:hint="طول"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/degree"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clipToPadding="false"-->
-<!--        android:padding="16dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+    <EditText
+        android:id="@+id/south"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:width="1dp"
+        android:hint="جنوب"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/degree"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
+    <com.example.draw.Zoomable
+        android:id="@+id/zoomable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/but_delete">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:background="#717171"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.example.draw.Zoomable>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:background="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zoomable" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
         android:background="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/zoomable" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/zoomable" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="2dp"
+        android:src="@drawable/twotone_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/zoomable" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

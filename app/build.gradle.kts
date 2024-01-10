@@ -51,5 +51,5 @@ dependencies {
 //    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 //    implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
 //    implementation ("androidx.cardview:cardview:1.0.0")
-//    implementation ("com.github.brakepadtechnologies.android:drag-drop-manager:1.0.0")
+//    implementation ("com.github.brakepadtechnologies.android:drag-drop-manager:1.0.0")z
 }
